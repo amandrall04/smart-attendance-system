@@ -324,13 +324,13 @@ function App() {
   }, []);
 
   return (
-    <div className="app">
+    <div className="app animate-fade-up">
       <div className="header">
-        <h1>🎓 Smart Attendance System</h1>
-        <p>AI-Powered Face Recognition Technology</p>
+        <h1 className="animate-fade-up">Smart Attendance System</h1>
+        <p>Face recognition attendance management</p>
       </div>
 
-      {error && <div className="error-banner">⚠️ {error}</div>}
+  {error && <div className="error-banner">{error}</div>}
 
       {/* Mode Selector */}
       <div className="mode-selector">
@@ -341,7 +341,7 @@ function App() {
             stopRecognition();
           }}
         >
-          📸 Training Mode
+          Training Mode
         </button>
         <button
           className={`mode-btn ${mode === 'recognize' ? 'active' : ''}`}
@@ -350,37 +350,37 @@ function App() {
             setCapturedPhotos([]);
           }}
         >
-          🔍 Recognition Mode
+          Recognition Mode
         </button>
       </div>
 
       <div className="content">
-        <div className="video-container">
+        <div className="video-container video-column">
           <div className="video-wrapper">
             <video ref={videoRef} autoPlay muted playsInline width="640" height="480" />
             <canvas ref={canvasRef} className="canvas-overlay" />
           </div>
 
           <div className="video-controls">
-            <button onClick={startVideo} disabled={isVideoReady} className="btn btn-primary">
-              📹 Start Webcam
+            <button onClick={startVideo} disabled={isVideoReady} className="btn btn-primary hover:animate-btn-glow-slow">
+              Start Webcam
             </button>
-            <button onClick={stopVideo} disabled={!isVideoReady} className="btn btn-secondary">
-              ⏹️ Stop Webcam
+            <button onClick={stopVideo} disabled={!isVideoReady} className="btn btn-secondary hover:animate-btn-glow-slow">
+              Stop Webcam
             </button>
           </div>
         </div>
 
-        <div className="control-panel">
+        <div className="control-panel panel-column">
           {/* TRAINING MODE */}
           {mode === 'train' && (
             <>
-              <h2>📸 Training Mode</h2>
+              <h2>Training Mode</h2>
               <p className="info-text">Capture 5 photos of each student to train the system</p>
 
               {untrainedStudents.length === 0 ? (
-                <div className="success-message">
-                  <h3>✅ All students are trained!</h3>
+                  <div className="success-message">
+                  <h3>All students are trained</h3>
                   <p>Switch to Recognition Mode to start taking attendance.</p>
                 </div>
               ) : (
@@ -422,9 +422,9 @@ function App() {
                   <button
                     onClick={captureTrainingPhoto}
                     disabled={!isVideoReady || !modelsLoaded || capturedPhotos.length >= 5}
-                    className="btn btn-success btn-large"
+                    className="btn btn-success btn-large hover:animate-btn-glow-slow"
                   >
-                    📸 Capture Photo
+                    Capture Photo
                   </button>
 
                   {trainingMessage && (
@@ -451,7 +451,7 @@ function App() {
           {/* RECOGNITION MODE */}
           {mode === 'recognize' && (
             <>
-              <h2>🔍 Recognition Mode</h2>
+              <h2>Recognition Mode</h2>
               <p className="info-text">System will automatically identify trained students</p>
 
               <div className="form-group">
@@ -475,22 +475,22 @@ function App() {
                 <button
                   onClick={startRecognition}
                   disabled={!modelsLoaded || !isVideoReady || isRecognizing || !labeledDescriptors}
-                  className="btn btn-success btn-large"
+                  className="btn btn-success btn-large hover:animate-btn-glow-slow"
                 >
-                  {isRecognizing ? '🟢 Recognizing...' : '▶️ Start Recognition'}
+                  {isRecognizing ? 'Recognizing...' : 'Start Recognition'}
                 </button>
                 <button
                   onClick={stopRecognition}
                   disabled={!isRecognizing}
-                  className="btn btn-warning"
+                  className="btn btn-warning hover:animate-btn-glow-slow"
                 >
-                  ⏸️ Stop Recognition
+                  Stop Recognition
                 </button>
               </div>
 
               {lastAttendance && (
                 <div className="attendance-result">
-                  <h3>✅ Last Attendance Confirmed</h3>
+                  <h3>Last attendance recorded</h3>
                   <p><strong>Student:</strong> {lastAttendance.student_name}</p>
                   <p><strong>Room:</strong> {lastAttendance.room_id}</p>
                   <p><strong>Confidence:</strong> {lastAttendance.confidence}%</p>
@@ -520,19 +520,19 @@ function App() {
               <div className="status-item">
                 <span className="status-label">Models:</span>
                 <span className={`status-value ${modelsLoaded ? 'success' : 'pending'}`}>
-                  {modelsLoaded ? '✅ Loaded' : '⏳ Loading...'}
+                  {modelsLoaded ? 'Loaded' : 'Loading...'}
                 </span>
               </div>
               <div className="status-item">
                 <span className="status-label">Webcam:</span>
                 <span className={`status-value ${isVideoReady ? 'success' : 'inactive'}`}>
-                  {isVideoReady ? '✅ Ready' : '⭕ Not Started'}
+                  {isVideoReady ? 'Ready' : 'Not started'}
                 </span>
               </div>
               <div className="status-item">
                 <span className="status-label">Mode:</span>
                 <span className="status-value active">
-                  {mode === 'train' ? '📸 Training' : '🔍 Recognition'}
+                  {mode === 'train' ? 'Training' : 'Recognition'}
                 </span>
               </div>
             </div>

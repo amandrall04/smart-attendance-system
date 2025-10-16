@@ -110,7 +110,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👥 Contributors
 
 - [Aman Drall](https://github.com/amandrall04)
-- [Megh Vyas](https://github.com/MeghVyas3132)\
+- [Megh Vyas](https://github.com/MeghVyas3132)
 - [Dharmi Chandarana](https://github.com/dharmichandarana)
 
 ## 🤝 Contributing
